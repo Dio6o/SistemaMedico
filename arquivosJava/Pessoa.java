@@ -23,12 +23,5 @@ public class Pessoa {
         }
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Pessoa{");
-        sb.append("nome='").append(getNome()).append('\'');
-        sb.append(", cpf='").append(getCpf()).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
+
 }

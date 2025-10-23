@@ -28,8 +28,7 @@ public class Atendente extends Pessoa {
         final StringBuilder sb = new StringBuilder("Atendente{");
         sb.append("setor='").append(getSetor()).append('\'');
         sb.append(", idFuncionario=").append(getIdFuncionario());
-        sb.append(", nome='").append(getNome()).append('\'');
-        sb.append(", cpf='").append(getCpf()).append('\'');
+        sb.append(Atendente.super.toString());
         sb.append('}');
         return sb.toString();
     }

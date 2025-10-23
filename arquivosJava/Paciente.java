@@ -29,8 +29,7 @@ public class Paciente extends Pessoa{
         sb.append("tipoSangue='").append(getTipoSangue()).append('\'');
         sb.append(", Alergias='").append(getAlergias()).append('\'');
         sb.append(", alergias='").append(getAlergias()).append('\'');
-        sb.append(", nome='").append(getNome()).append('\'');
-        sb.append(", cpf='").append(getCpf()).append('\'');
+        sb.append(Paciente.super.toString());
         sb.append('}');
         return sb.toString();
     }

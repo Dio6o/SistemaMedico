@@ -25,11 +25,10 @@ public class Enfermeiro extends Pessoa{
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Atendente{");
+        final StringBuilder sb = new StringBuilder("Enfermeiro{");
         sb.append("setor='").append(getSetor()).append('\'');
         sb.append(", idFuncionario=").append(getIdFuncionario());
-        sb.append(", nome='").append(getNome()).append('\'');
-        sb.append(", cpf='").append(getCpf()).append('\'');
+        sb.append(Enfermeiro.super.toString());
         sb.append('}');
         return sb.toString();
     }
