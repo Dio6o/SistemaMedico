@@ -8,7 +8,7 @@ class Main {
         List<Prontuario> prontuario = new ArrayList<>();
         Paciente paciente1 = new Paciente("Diogo", "123", "A-", "Nenhuma");
         paciente1.setProntuario(prontuario);
-        Atendimento atendimento = new Atendimento("23/10/2025", Atendimento.ClassificacaoAtendimento.URGENTE);
+        Atendimento atendimento = new Atendimento("23/10/2025", Atendimento.ClassificacaoFila.URGENTE);
 
         System.out.println(paciente1);
     }
