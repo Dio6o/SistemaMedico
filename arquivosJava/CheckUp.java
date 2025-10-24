@@ -8,25 +8,25 @@ public class CheckUp {
         NAO_URGENTE,
     }
     
-    private classificacaoFila classificacaoLista;
+    private classificacaoFila classificacaoFila;
 
-    public CheckUp(classificacaoFila classificacaoLista) {
-        setClassificacaoLista(classificacaoLista);
+    public CheckUp(classificacaoFila classificacaoFila) {
+        setClassificacaoLista(classificacaoFila);
     }
     
-    public classificacaoFila getClassificacaoAtendimento() {
-        return classificacaoLista;
+    public classificacaoFila getClassificacaoFila() {
+        return classificacaoFila;
     }
 
-    public void setClassificacaoLista(classificacaoFila classificacaoLista) {
-        this.classificacaoLista = classificacaoLista;
+    public void setClassificacaoLista(classificacaoFila classificacaoFila) {
+        this.classificacaoFila = classificacaoFila;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CheckUp{");
-        sb.append("classificacaoLista=").append(classificacaoLista);
-        sb.append(", classificacaoAtendimento=").append(getClassificacaoAtendimento());
+        sb.append("classificacaoFila=").append(classificacaoFila);
+        sb.append(", classificacaoFila=").append(getClassificacaoFila());
         sb.append('}');
         return sb.toString();
     }
