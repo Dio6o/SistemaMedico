@@ -1,17 +1,41 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Paciente extends Pessoa{
+        Scanner input = new Scanner(System.in);
 
     private String tipoSangue;
-    private String Alergias;
+    private String alergias;
     protected List<Prontuario> prontuario = new ArrayList<>();
 
-    public Paciente(String nome, String cpf, String tipoSangue, String Alergias) {
+    public String cadastrarPaciente(String nome, String cpf, String tipoSangue, String alergias) {
+        System.out.println("=== Cadastro de Paciente ===");
+
+        System.out.print("Digite o nome: ");
+        nome = input.nextLine();
+
+        System.out.print("Digite o CPF: ");
+        cpf = input.nextLine();
+
+        System.out.print("Digite o tipo sanguíneo: ");
+        tipoSangue = input.nextLine();
+
+        System.out.print("Digite alergias (se houver): ");
+        alergias = input.nextLine();
+
         setNome(nome);
         setCpf(cpf);
         setTipoSangue(tipoSangue);
-        setAlergias(Alergias);
+        setAlergias(alergias);
+
+        String resultado = "Paciente cadastrado:\n" +
+                "Nome: " + nome + "\n" +
+                "CPF: " + cpf + "\n" +
+                "Tipo Sanguíneo: " + tipoSangue + "\n" +
+                "Alergias: " + alergias;
+
+        return resultado;
     }
 
     public List<Prontuario> getProntuario() {
@@ -33,22 +57,23 @@ public class Paciente extends Pessoa{
     }
 
     public String getAlergias() {
-        return Alergias;
+        return alergias;
     }
 
     public void setAlergias(String alergias) {
         if (alergias != null) {
-            Alergias = alergias;
+            alergias = alergias;
         }
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Paciente{");
+        sb.append("input=").append(input);
+        sb.append(", tipoSangue='").append(getTipoSangue()).append('\'');
+        sb.append(", alergias='").append(getAlergias()).append('\'');
+        sb.append(", prontuario=").append(getProntuario());
         sb.append(Paciente.super.toString());
-        sb.append("tipoSangue='").append(getTipoSangue()).append('\'');
-        sb.append(", Alergias='").append(getAlergias()).append('\'');
-        sb.append(", Prontuario='").append(getProntuario()).append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -10,6 +10,27 @@ public class Consulta {
         this.diagnostico = diagnostico;
     }
 
+    public String prontuario(String nome, String CPF, String tipoSangue, String alergias,
+                             String temperatura, String bpm, String diagnostico, String triagem) {
+        return "----------------------------\n" +
+                "       PRONTUÁRIO MÉDICO      \n" +
+                "----------------------------\n" +
+                "Nome: " + nome + "\n" +
+                "CPF: " + CPF + "\n" +
+                "Tipo Sanguíneo: " + tipoSangue + "\n" +
+                "Alergias: " + alergias + "\n" +
+                "----------------------------\n" +
+                "Prioridade:\n" + triagem + "\n" +
+                "----------------------------\n" +
+                "Sinais Vitais:\n" +
+                " - Temperatura: " + temperatura + " °C\n" +
+                " - BPM: " + bpm + "\n" +
+                "----------------------------\n" +
+                "Diagnóstico:\n" +
+                diagnostico + "\n" +
+                "----------------------------\n";
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Consulta{");
@@ -17,5 +38,6 @@ public class Consulta {
         sb.append('}');
         return sb.toString();
     }
+
 
 }

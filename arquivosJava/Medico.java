@@ -1,4 +1,7 @@
+import java.util.Scanner;
+
 public class Medico extends Pessoa{
+    Scanner input = new Scanner(System.in);
 
     private String setor;
     private Integer idFuncionario;
@@ -22,6 +25,14 @@ public class Medico extends Pessoa{
             this.idFuncionario = idFuncionario;
         }
     }
+
+    public String examinar(Paciente paciente, String diagnostico) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Diagnóstico: ");
+        diagnostico = input.nextLine();
+        return diagnostico;
+    }
+
 
     @Override
     public String toString() {
