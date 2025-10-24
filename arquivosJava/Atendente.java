@@ -1,4 +1,7 @@
+import java.util.Scanner;
+
 public class Atendente extends Pessoa {
+    Scanner input = new Scanner(System.in);
 
     private String setor;
     private Integer idFuncionario;
@@ -21,6 +24,22 @@ public class Atendente extends Pessoa {
         if ((idFuncionario != null) && (idFuncionario > 0)) {
             this.idFuncionario = idFuncionario;
         }
+    }
+
+    public double triagem() {
+        double total = 0;
+
+        System.out.print("Você se enjoado?: Sim ou Não? " );
+        String opcao = input.nextLine();
+        if (opcao.equalsIgnoreCase("sim")) {
+            total += 5;
+        }
+
+        System.out.print("Qual o nível da dor? 0 a 10. ");
+        int opcao2 = input.nextInt();
+        total += opcao2;
+
+        return total;
     }
 
     @Override
