@@ -62,7 +62,7 @@ public class Paciente extends Pessoa{
 
     public void setAlergias(String alergias) {
         if (alergias != null) {
-            alergias = alergias;
+            this.alergias = alergias;
         }
     }
 
