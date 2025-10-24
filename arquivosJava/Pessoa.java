@@ -23,5 +23,13 @@ public class Pessoa {
         }
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Pessoa{");
+        sb.append("nome='").append(nome).append('\'');
+        sb.append(", cpf='").append(cpf).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 
 }

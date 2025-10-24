@@ -1,25 +1,37 @@
-import java.util.Date;
 
 public class Atendimento {
 
-    private Date dataAtendimento;
-    private Enum classificacaoAtendimento;
+    public enum ClassificacaoAtendimento {
+        EMERGENCIA,
+        URGENTE,
+        POUCO_URGENTE,
+        NAO_URGENTE,
+    }
 
-    public Date getDataAtendimento() {
+    private String dataAtendimento;
+    private ClassificacaoAtendimento classificacaoAtendimento;
+
+    public Atendimento(String dataAtendimento, ClassificacaoAtendimento classificacaoAtendimento) {
+        setDataAtendimento(dataAtendimento);
+        setClassificacaoAtendimento(classificacaoAtendimento);
+    }
+
+    public String getDataAtendimento() {
         return dataAtendimento;
     }
 
-    public void setDataAtendimento(Date dataAtendimento) {
+    public void setDataAtendimento(String dataAtendimento) {
         this.dataAtendimento = dataAtendimento;
     }
 
-    public Enum getClassificacaoAtendimento() {
+    public ClassificacaoAtendimento getClassificacaoAtendimento() {
         return classificacaoAtendimento;
     }
 
-    public void setClassificacaoAtendimento(Enum classificacaoAtendimento) {
+    public void setClassificacaoAtendimento(ClassificacaoAtendimento classificacaoAtendimento) {
         this.classificacaoAtendimento = classificacaoAtendimento;
     }
+
 
     @Override
     public String toString() {
