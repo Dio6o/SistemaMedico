@@ -35,6 +35,8 @@ public class Enfermeiro extends Pessoa{
         System.out.print("Qual quantida de BPM do paciente?: ");
         double batimentos = input.nextDouble();
 
+        input.nextLine();
+
         if (temperatura > 39){
             total += 5;
         } else if (temperatura > 37.8){
@@ -58,13 +60,13 @@ public class Enfermeiro extends Pessoa{
         }
 
         if (total >= 20){
-            return "Atendimento Imediato";
+            return "vermelho";
         } else if (total >= 15){
-            return "Atendimento Urgente";
+            return "amarelo";
         } else if (total >= 10){
-            return "Atendimento Pouco Urgente";
+            return "verde";
         } else {
-            return "Atendimento Não Urgente";
+            return "azul";
         }
 
     }

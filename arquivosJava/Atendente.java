@@ -39,6 +39,8 @@ public class Atendente extends Pessoa {
         int opcao2 = input.nextInt();
         total += opcao2;
 
+        input.nextLine();
+
         return total;
     }
 

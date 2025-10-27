@@ -5,6 +5,7 @@ public class Paciente extends Pessoa{
 
     private String tipoSangue;
     private String Alergias;
+    private String prioridade = "";
     protected List<Prontuario> prontuario = new ArrayList<>();
 
     public Paciente(String nome, String cpf, String tipoSangue, String Alergias) {
@@ -12,6 +13,14 @@ public class Paciente extends Pessoa{
         setCpf(cpf);
         setTipoSangue(tipoSangue);
         setAlergias(Alergias);
+    }
+
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
     }
 
     public List<Prontuario> getProntuario() {
@@ -49,6 +58,7 @@ public class Paciente extends Pessoa{
         sb.append("tipoSangue='").append(getTipoSangue()).append('\'');
         sb.append(", Alergias='").append(getAlergias()).append('\'');
         sb.append(", Prontuario='").append(getProntuario()).append('\'');
+        sb.append(", Prioridade='").append(getPrioridade()).append('\'');
         sb.append('}');
         return sb.toString();
     }
