@@ -11,14 +11,61 @@ public class GerenciadorHospital {
     private List<Paciente> todosPacientes;
 
     public GerenciadorHospital(Scanner input, Atendente atendente, Enfermeiro enfermeiro, Medico medico) {
-        this.input = input;
-        this.atendente = atendente;
-        this.enfermeiro = enfermeiro;
-        this.medico = medico;
-        this.fila = new FilaAtendimento();
-        this.todosPacientes = new ArrayList<>();
+        setInput(input);
+        setAtendente(atendente);
+        setEnfermeiro(enfermeiro);
+        setMedico(medico);
+        setFila(new FilaAtendimento());
+        setTodosPacientes(new ArrayList<>());
     }
 
+    public Scanner getInput() {
+        return input;
+    }
+
+    public void setInput(Scanner input) {
+        this.input = input;
+    }
+
+    public Atendente getAtendente() {
+        return atendente;
+    }
+
+    public void setAtendente(Atendente atendente) {
+        this.atendente = atendente;
+    }
+
+    public Enfermeiro getEnfermeiro() {
+        return enfermeiro;
+    }
+
+    public void setEnfermeiro(Enfermeiro enfermeiro) {
+        this.enfermeiro = enfermeiro;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public FilaAtendimento getFila() {
+        return fila;
+    }
+
+    public void setFila(FilaAtendimento fila) {
+        this.fila = fila;
+    }
+
+    public List<Paciente> getTodosPacientes() {
+        return todosPacientes;
+    }
+
+    public void setTodosPacientes(List<Paciente> todosPacientes) {
+        this.todosPacientes = todosPacientes;
+    }
 
     public void carregarPacientesPadrao() {
 

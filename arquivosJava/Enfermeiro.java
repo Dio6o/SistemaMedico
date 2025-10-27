@@ -8,9 +8,26 @@ public class Enfermeiro extends Pessoa {
     private String setor;
 
     public Enfermeiro(String nome, String cpf, String idFuncionario, String setor) {
-        super(nome, cpf);
-        this.idFuncionario = idFuncionario;
+        setNome(nome);
+        setCpf(cpf);
+        setIdFuncionario(idFuncionario);
+        setSetor(setor);
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
         this.setor = setor;
+    }
+
+    public String getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(String idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
     public void realizarTriagem(Scanner input, List<Paciente> todosPacientes, FilaAtendimento fila) {

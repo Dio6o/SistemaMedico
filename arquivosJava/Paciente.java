@@ -10,9 +10,10 @@ public class Paciente extends Pessoa {
     public Paciente() {}
 
     public Paciente(String nome, String cpf, String tipoSangue, String alergias) {
-        super(nome, cpf);
-        this.tipoSangue = tipoSangue;
-        this.alergias = alergias;
+        setNome(nome);
+        setCpf(cpf);
+        setTipoSangue(tipoSangue);
+        setAlergias(alergias);
     }
 
     public String getTipoSangue() { return tipoSangue; }

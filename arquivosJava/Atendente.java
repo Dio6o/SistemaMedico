@@ -5,9 +5,27 @@ public class Atendente extends Pessoa {
     private String idFuncionario;
     private String setor;
 
+
     public Atendente(String nome, String cpf, String idFuncionario, String setor) {
-        super(nome, cpf);
+        setNome(nome);
+        setCpf(cpf);
+        setIdFuncionario(idFuncionario);
+        setSetor(setor);
+    }
+
+    public String getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(String idFuncionario) {
         this.idFuncionario = idFuncionario;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
         this.setor = setor;
     }
 

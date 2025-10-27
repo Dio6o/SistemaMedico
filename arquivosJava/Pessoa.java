@@ -5,8 +5,8 @@ public class Pessoa {
     public Pessoa() {}
 
     public Pessoa(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
+        setNome(nome);
+        setCpf(cpf);
     }
 
     public String getNome() {
@@ -15,7 +15,7 @@ public class Pessoa {
 
     public void setNome(String nome) {
         if (nome != null && !nome.isBlank()) {
-            this.nome = nome;
+            setNome(nome);
         } else {
             System.out.println("Nome inválido!");
         }
@@ -27,7 +27,7 @@ public class Pessoa {
 
     public void setCpf(String cpf) {
         if (cpf != null && !cpf.isBlank()) {
-            this.cpf = cpf;
+            setCpf(cpf);
         } else {
             System.out.println("CPF inválido!");
         }
