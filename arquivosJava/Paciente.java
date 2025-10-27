@@ -5,6 +5,7 @@ public class Paciente extends Pessoa{
 
     private String tipoSangue;
     private String Alergias;
+    private String prioridade;
     protected List<Prontuario> prontuario = new ArrayList<>();
 
     public Paciente(String nome, String cpf, String tipoSangue, String Alergias) {
@@ -40,6 +41,14 @@ public class Paciente extends Pessoa{
         if (alergias != null) {
             Alergias = alergias;
         }
+    }
+
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
     }
 
     @Override
