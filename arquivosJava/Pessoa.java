@@ -1,10 +1,8 @@
 public class Pessoa {
-
     private String nome;
     private String cpf;
 
-    public Pessoa() {
-    }
+    public Pessoa() {}
 
     public Pessoa(String nome, String cpf) {
         this.nome = nome;
@@ -34,7 +32,6 @@ public class Pessoa {
             System.out.println("CPF inválido!");
         }
     }
-
 
     @Override
     public String toString() {

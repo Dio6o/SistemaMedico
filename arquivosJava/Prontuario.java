@@ -7,11 +7,7 @@ public class Prontuario {
     public Prontuario() {}
 
     public void adicionarConsulta(Consulta consulta) {
-        if (consulta != null) {
-            consultas.add(consulta);
-        } else {
-            System.out.println("Consulta inválida, não adicionada ao prontuário.");
-        }
+        if (consulta != null) consultas.add(consulta);
     }
 
     public void listarConsultas() {
@@ -19,7 +15,6 @@ public class Prontuario {
             System.out.println("Nenhuma consulta registrada.");
             return;
         }
-
         for (int i = 0; i < consultas.size(); i++) {
             System.out.println("\n===== CONSULTA Nº " + (i + 1) + " =====");
             System.out.println(consultas.get(i).gerarRelatorio());
@@ -27,20 +22,7 @@ public class Prontuario {
         }
     }
 
-    public List<Consulta> getConsultas() {
-        return consultas;
-    }
-
-    public void setConsultas(List<Consulta> consultas) {
-        if (consultas != null) {
-            this.consultas = consultas;
-        }
-    }
-
-    public int getTotalConsultas() {
-        return consultas.size();
-    }
-
+    public List<Consulta> getConsultas() { return consultas; }
 
     @Override
     public String toString() {

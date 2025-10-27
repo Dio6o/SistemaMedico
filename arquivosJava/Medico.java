@@ -1,10 +1,8 @@
 import java.util.Scanner;
 
 public class Medico extends Pessoa {
-    private String setor;
     private String idFuncionario;
-
-    public Medico() {}
+    private String setor;
 
     public Medico(String nome, String cpf, String idFuncionario, String setor) {
         super(nome, cpf);
@@ -12,44 +10,38 @@ public class Medico extends Pessoa {
         this.setor = setor;
     }
 
-    public String getSetor() {
-        return setor;
-    }
-
-    public void setSetor(String setor) {
-        if (setor != null && !setor.isBlank()) {
-            this.setor = setor;
-        } else {
-            this.setor = "Clínico Geral";
+    public void realizarConsulta(Scanner input, FilaAtendimento fila) {
+        if (fila.estaVazia()) {
+            System.out.println("\n(Dr. " + getNome() + " checou: Não há pacientes na fila.)");
+            return;
         }
-    }
 
-    public String getIdFuncionario() {
-        return idFuncionario;
-    }
+        Paciente paciente = fila.proximoPaciente();
+        System.out.println("\n--- Consulta Iniciada ---");
+        System.out.println("Chamando paciente: " + paciente.getNome() + " (Prioridade: " + paciente.getPrioridade().toUpperCase() + ")");
 
-    public void setIdFuncionario(String idFuncionario) {
-        if (idFuncionario != null && !idFuncionario.isBlank()) {
-            this.idFuncionario = idFuncionario;
-        } else {
-            System.out.println("ID de funcionário inválido!");
+        String diagnostico = examinar(input, paciente);
+
+        Consulta consulta = new Consulta(paciente, this, diagnostico);
+        if (paciente.getProntuario().isEmpty()) {
+            paciente.adicionarProntuario(new Prontuario());
         }
+        paciente.getProntuario().get(0).adicionarConsulta(consulta);
+
+        System.out.println("Consulta finalizada e registrada no prontuário de " + paciente.getNome() + ".");
     }
 
-    public String examinar(Paciente paciente) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("\n=== Consulta Médica ===");
-        System.out.printf("Paciente: %s\n", paciente.getNome());
-        System.out.print("Diagnóstico: ");
-        String diagnostico = input.nextLine();
-        return diagnostico;
+    private String examinar(Scanner input, Paciente paciente) {
+        System.out.printf("Examinando paciente: %s\n", paciente.getNome());
+        System.out.print("Diagnóstico do Dr. " + getNome() + ": ");
+        return input.nextLine();
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Medico{");
-        sb.append("setor='").append(getSetor()).append('\'');
-        sb.append(", idFuncionario='").append(getIdFuncionario()).append('\'');
+        sb.append("idFuncionario='").append(idFuncionario).append('\'');
+        sb.append(", setor='").append(setor).append('\'');
         sb.append(", nome='").append(getNome()).append('\'');
         sb.append(", cpf='").append(getCpf()).append('\'');
         sb.append('}');

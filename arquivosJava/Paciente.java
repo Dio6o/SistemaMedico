@@ -2,10 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Paciente extends Pessoa {
-
     private String tipoSangue;
     private String alergias;
-    private String prioridade; // definido apenas pela enfermeira
+    private String prioridade; // definida pela triagem
     private List<Prontuario> prontuario = new ArrayList<>();
 
     public Paciente() {}
@@ -16,56 +15,24 @@ public class Paciente extends Pessoa {
         this.alergias = alergias;
     }
 
-    public String getTipoSangue() {
-        return tipoSangue;
-    }
-
+    public String getTipoSangue() { return tipoSangue; }
     public void setTipoSangue(String tipoSangue) {
-        if (tipoSangue != null && !tipoSangue.isBlank()) {
-            this.tipoSangue = tipoSangue;
-        } else {
-            System.out.println("Tipo sanguíneo inválido!");
-        }
+        if (tipoSangue != null) this.tipoSangue = tipoSangue;
     }
 
-    public String getAlergias() {
-        return alergias;
-    }
-
+    public String getAlergias() { return alergias; }
     public void setAlergias(String alergias) {
-        if (alergias != null) {
-            this.alergias = alergias;
-        } else {
-            this.alergias = "Nenhuma registrada";
-        }
+        if (alergias != null) this.alergias = alergias;
     }
 
-    public String getPrioridade() {
-        return prioridade;
-    }
-
+    public String getPrioridade() { return prioridade; }
     public void definirPrioridade(String prioridade) {
-        if (prioridade != null && !prioridade.isBlank()) {
-            this.prioridade = prioridade.toLowerCase();
-        } else {
-            System.out.println("Prioridade inválida!");
-        }
+        if (prioridade != null && !prioridade.isBlank()) this.prioridade = prioridade.toLowerCase();
     }
 
-    public List<Prontuario> getProntuario() {
-        return prontuario;
-    }
-
-    public void setProntuario(List<Prontuario> prontuario) {
-        if (prontuario != null) {
-            this.prontuario = prontuario;
-        }
-    }
-
-    public void adicionarProntuario(Prontuario novoProntuario) {
-        if (novoProntuario != null) {
-            prontuario.add(novoProntuario);
-        }
+    public List<Prontuario> getProntuario() { return prontuario; }
+    public void adicionarProntuario(Prontuario p) {
+        if (p != null) prontuario.add(p);
     }
 
     @Override
