@@ -1,34 +1,36 @@
+import java.time.LocalDate;
+
 public class Consulta {
     private Paciente paciente;
-    private String temperatura;
-    private String bpm;
+    private Medico medico;
     private String diagnostico;
-    private String triagem;
+    private LocalDate dataConsulta;
 
-    Consulta(){}
+    public Consulta(Paciente paciente, Medico medico, String diagnostico) {
+        this.paciente = paciente;
+        this.medico = medico;
+        this.diagnostico = diagnostico;
+        this.dataConsulta = LocalDate.now();
+    }
 
     public Paciente getPaciente() {
         return paciente;
     }
 
     public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+        if (paciente != null) {
+            this.paciente = paciente;
+        }
     }
 
-    public String getTemperatura() {
-        return temperatura;
+    public Medico getMedico() {
+        return medico;
     }
 
-    public void setTemperatura(String temperatura) {
-        this.temperatura = temperatura;
-    }
-
-    public String getBpm() {
-        return bpm;
-    }
-
-    public void setBpm(String bpm) {
-        this.bpm = bpm;
+    public void setMedico(Medico medico) {
+        if (medico != null) {
+            this.medico = medico;
+        }
     }
 
     public String getDiagnostico() {
@@ -36,58 +38,38 @@ public class Consulta {
     }
 
     public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+        if (diagnostico != null && !diagnostico.isBlank()) {
+            this.diagnostico = diagnostico;
+        }
     }
 
-    public String getTriagem() {
-        return triagem;
+    public LocalDate getDataConsulta() {
+        return dataConsulta;
     }
 
-    public void setTriagem(String triagem) {
-        this.triagem = triagem;
+    public void setDataConsulta(LocalDate dataConsulta) {
+        this.dataConsulta = dataConsulta;
     }
-
-    public void consultar(Fila fila){
-        Paciente paciente = fila.getFila().getFirst();
-        System.out.printf("Consultando paciente %s \n",  paciente.getNome());
-        //Adicionar dados ao protuario do paciente
-        fila.getFila().remove(paciente);
-
-    }
-
 
     public String gerarRelatorio() {
-        return "----------------------------\n" +
-                "       PRONTUÁRIO MÉDICO      \n" +
-                "----------------------------\n" +
-                "Nome: " + paciente.getNome() + "\n" +
-                "CPF: " + paciente.getCpf() + "\n" +
-                "Tipo Sanguíneo: " + paciente.getTipoSangue() + "\n" +
-                "Alergias: " + paciente.getAlergias() + "\n" +
-                "----------------------------\n" +
-                "Prioridade:\n" + triagem + "\n" +
-                "----------------------------\n" +
-                "Sinais Vitais:\n" +
-                " - Temperatura: " + temperatura + " °C\n" +
-                " - BPM: " + bpm + "\n" +
-                "----------------------------\n" +
-                "Diagnóstico:\n" +
-                diagnostico + "\n" +
-                "----------------------------\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Data da Consulta: ").append(dataConsulta).append("\n");
+        sb.append("Paciente: ").append(paciente.getNome()).append("\n");
+        sb.append("Médico: ").append(medico.getNome()).append("\n");
+        sb.append("Diagnóstico: ").append(diagnostico).append("\n");
+        sb.append("Prioridade: ").append(paciente.getPrioridade() != null ? paciente.getPrioridade().toUpperCase() : "Não definida").append("\n");
+        return sb.toString();
     }
+
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Consulta{");
         sb.append("paciente=").append(getPaciente());
-        sb.append(", temperatura='").append(getTemperatura()).append('\'');
-        sb.append(", bpm='").append(getBpm()).append('\'');
+        sb.append(", medico=").append(getMedico());
         sb.append(", diagnostico='").append(getDiagnostico()).append('\'');
-        sb.append(", triagem='").append(getTriagem()).append('\'');
+        sb.append(", dataConsulta=").append(getDataConsulta());
         sb.append('}');
         return sb.toString();
     }
 }
-
-
-

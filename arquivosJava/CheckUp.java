@@ -1,24 +1,24 @@
 public class CheckUp {
 
 
-    public enum classificacaoFila {
+    public enum ClassificacaoFila {
         EMERGENCIA,
         URGENTE,
         POUCO_URGENTE,
         NAO_URGENTE,
     }
     
-    private classificacaoFila classificacaoFila;
+    private ClassificacaoFila classificacaoFila;
 
-    public CheckUp(classificacaoFila classificacaoFila) {
+    public CheckUp(ClassificacaoFila classificacaoFila) {
         setClassificacaoLista(classificacaoFila);
     }
     
-    public classificacaoFila getClassificacaoFila() {
+    public ClassificacaoFila getClassificacaoFila() {
         return classificacaoFila;
     }
 
-    public void setClassificacaoLista(classificacaoFila classificacaoFila) {
+    public void setClassificacaoLista(ClassificacaoFila classificacaoFila) {
         this.classificacaoFila = classificacaoFila;
     }
 

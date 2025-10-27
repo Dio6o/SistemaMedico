@@ -1,83 +1,111 @@
 import java.util.Scanner;
 
-public class Enfermeiro extends Pessoa{
-    Scanner input = new Scanner(System.in);
+public class Enfermeiro extends Pessoa {
 
+    private String idFuncionario;
     private String setor;
-    private Integer idFuncionario;
+
+
+    public Enfermeiro() {}
+
+
+    public Enfermeiro(String nome, String cpf, String idFuncionario, String setor) {
+        super(nome, cpf);
+        this.idFuncionario = idFuncionario;
+        this.setor = setor;
+    }
+
+
+    public String getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(String idFuncionario) {
+        if (idFuncionario != null && !idFuncionario.isBlank()) {
+            this.idFuncionario = idFuncionario;
+        } else {
+            System.out.println("ID de funcionário inválido!");
+        }
+    }
 
     public String getSetor() {
         return setor;
     }
 
     public void setSetor(String setor) {
-        if (setor != null) {
+        if (setor != null && !setor.isBlank()) {
             this.setor = setor;
+        } else {
+            this.setor = "Triagem";
         }
     }
 
-    public int getIdFuncionario() {
-        return idFuncionario;
-    }
+    public String realizarTriagem(Scanner input, Paciente paciente) {
+        double total = 0;
 
-    public void setIdFuncinario(Integer idFuncionario) {
-        if ((idFuncionario != null) && (idFuncionario > 0)) {
-            this.idFuncionario = idFuncionario;
-        }
-    }
+        System.out.println("\n=== Triagem do Paciente ===");
+        System.out.printf("Paciente: %s\n", paciente.getNome());
 
-    public String triagem(double valor) {
-        double total = valor;
+        System.out.print("O paciente está sentindo enjoo? (Sim/Não): ");
+        String resposta = input.nextLine();
+        if (resposta.equalsIgnoreCase("sim")) total += 3;
 
-        System.out.print("Qual a temperatura do paciente?: ");
+        System.out.print("Qual o nível de dor (0 a 10)? ");
+        int nivelDor = input.nextInt();
+        total += nivelDor;
+
+        System.out.print("Temperatura corporal (°C): ");
         double temperatura = input.nextDouble();
 
-        System.out.print("Qual quantida de BPM do paciente?: ");
-        double batimentos = input.nextDouble();
-
+        System.out.print("Batimentos por minuto (BPM): ");
+        int bpm = input.nextInt();
         input.nextLine();
 
-        if (temperatura > 39){
-            total += 5;
-        } else if (temperatura > 37.8){
-            total += 3;
-        } else if  (temperatura > 37.2){
-            total += 1;
+        if (temperatura > 39) total += 5;
+        else if (temperatura >= 38) total += 3;
+        else if (temperatura >= 37.5) total += 1;
+        else if (temperatura < 35) total += 4;
+
+        if (bpm > 120) total += 5;
+        else if (bpm > 100) total += 3;
+        else if (bpm < 50) total += 3;
+        else if (bpm < 30) total += 5;
+
+        String prioridade;
+
+        if (total >= 20) prioridade = "vermelho";
+        else if (total >= 15) prioridade = "amarelo";
+        else if (total >= 10) prioridade = "verde";
+        else prioridade = "azul";
+
+        paciente.definirPrioridade(prioridade);
+
+        System.out.printf("\nPrioridade definida: %s\n", prioridade.toUpperCase());
+
+
+        CheckUp.ClassificacaoFila classificacao;
+        switch (prioridade.toLowerCase()) {
+            case "vermelho" -> classificacao = CheckUp.ClassificacaoFila.EMERGENCIA;
+            case "amarelo" -> classificacao = CheckUp.ClassificacaoFila.URGENTE;
+            case "verde" -> classificacao = CheckUp.ClassificacaoFila.POUCO_URGENTE;
+            default -> classificacao = CheckUp.ClassificacaoFila.NAO_URGENTE;
         }
+        paciente.adicionarProntuario(new Prontuario());
+        System.out.printf("Classificação de fila: %s\n", classificacao);
+        System.out.println("----------------------------\n");
 
-        //TODO set the temperatures for  hypotermia
-
-        if (batimentos > 120){
-            total += 5;
-        } if (batimentos > 100){
-            total += 2;
-        } if  (batimentos > 90){
-            total += 0;
-        } if (batimentos < 50){
-            total += 2;
-        } if  (batimentos < 30){
-            total += 5;
-        }
-
-        if (total >= 20){
-            return "vermelho";
-        } else if (total >= 15){
-            return "amarelo";
-        } else if (total >= 10){
-            return "verde";
-        } else {
-            return "azul";
-        }
-
+        return prioridade;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Enfermeiro{");
-        sb.append("setor='").append(getSetor()).append('\'');
-        sb.append(", idFuncionario=").append(getIdFuncionario());
-        sb.append(Enfermeiro.super.toString());
+        sb.append("idFuncionario='").append(getIdFuncionario()).append('\'');
+        sb.append(", setor='").append(getSetor()).append('\'');
+        sb.append(", nome='").append(getNome()).append('\'');
+        sb.append(", cpf='").append(getCpf()).append('\'');
         sb.append('}');
         return sb.toString();
     }
 }
+

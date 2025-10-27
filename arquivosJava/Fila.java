@@ -1,106 +1,86 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public class Fila {
 
-    private int posicao;
-    private ArrayList<Paciente> fila = new ArrayList<>();
+    private LinkedList<Paciente> fila = new LinkedList<>();
 
-    public ArrayList<Paciente> getFila() {
+    public LinkedList<Paciente> getFila() {
         return fila;
     }
 
-    private void setFila(ArrayList<Paciente> fila) {
+    public void setFila(LinkedList<Paciente> fila) {
         this.fila = fila;
     }
 
-    public int getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
-    }
-
     public void addToLine(Paciente paciente) {
-
-        if (paciente.getPrioridade() != null) {
-            if (fila.isEmpty()) {
-                fila.addFirst(paciente);
-
-            } else {
-                // 4 cases to deal with when adding a pacient to the line:
-                // 1) the line doesn't have the priority of the current pacient
-                // 2) the line has the priority of the current pacient
-
-                String priority = paciente.getPrioridade();
-                int last;
-
-                if (lineContainsPriority(priority)) {
-                    last = lastIndexOf(priority);
-                    fila.add(last + 1, paciente); // Adds the pacient based on the priority
-
-                } else {
-                    switch (priority) {
-                        case "vermelho" -> fila.addFirst(paciente);
-                        case "amarelo" -> {
-                            last = lastIndexOf("vermelho");
-                            fila.add(last + 1, paciente);
-                        }
-                        case "verde" -> {
-                            if (lineContainsPriority("amarelo")) {
-                                last = lastIndexOf("amarelo");
-                                fila.add(last + 1, paciente);
-
-                            } else if (lineContainsPriority("vermelho")) {
-                                last = lastIndexOf("vermelho");
-                                fila.add(last + 1, paciente);
-
-                            } else {
-                                fila.addFirst(paciente);
-                            }
-                        }
-                        case "azul" -> fila.addLast(paciente);
-                    }
-                }
-            }
-
-        } else {
-            System.out.println("Paciente não pode ser adicionado sem uma prioridade!");
-
+        if (paciente.getPrioridade() == null) {
+            System.out.println("Paciente não pode ser adicionado sem prioridade!");
+            return;
         }
 
-    }
+        String prioridade = paciente.getPrioridade();
 
-    private boolean lineContainsPriority(String priority) {
-        // Returns true if the line contains the specified priority, else, returns false
-        for (Paciente paciente : fila) {
-            if (paciente.getPrioridade().equals(priority)) {
-                return true;
-            }
+        if (fila.isEmpty()) {
+            fila.add(paciente);
+            return;
         }
-        return false;
+
+        switch (prioridade) {
+            case "vermelho" -> fila.addFirst(paciente);
+            case "amarelo" -> {
+                int lastRed = lastIndexOf("vermelho");
+                fila.add(lastRed + 1, paciente);
+            }
+            case "verde" -> {
+                int lastYellow = lastIndexOf("amarelo");
+                int lastRed = lastIndexOf("vermelho");
+                int pos = Math.max(lastYellow, lastRed);
+                if (pos >= 0) fila.add(pos + 1, paciente);
+                else fila.addFirst(paciente);
+            }
+            case "azul" -> fila.addLast(paciente);
+            default -> System.out.println("Prioridade inválida!");
+        }
     }
 
-    private int lastIndexOf(String priority) {
-        // Returns the index of the last occurrence of the specified priority
+    private int lastIndexOf(String prioridade) {
         int index = -1;
         for (int i = 0; i < fila.size(); i++) {
-            if (fila.get(i).getPrioridade().equals(priority)) {
+            if (fila.get(i).getPrioridade().equalsIgnoreCase(prioridade)) {
                 index = i;
             }
         }
         return index;
     }
 
+    public Paciente chamarProximo() {
+        if (!fila.isEmpty()) {
+            return fila.removeFirst();
+        } else {
+            System.out.println("Fila vazia!");
+            return null;
+        }
+    }
+
+    public void mostrarFila() {
+        if (fila.isEmpty()) {
+            System.out.println("Nenhum paciente na fila.");
+            return;
+        }
+
+        System.out.println("\n=== FILA DE ATENDIMENTO ===");
+        for (int i = 0; i < fila.size(); i++) {
+            Paciente p = fila.get(i);
+            System.out.printf("%dº - %s (Prioridade: %s)\n", i + 1, p.getNome(), p.getPrioridade());
+        }
+        System.out.println("----------------------------");
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Fila{");
-        sb.append("posicao=").append(posicao);
-        sb.append(", fila=").append(fila);
+        sb.append("fila=").append(getFila());
         sb.append('}');
         return sb.toString();
     }
-
-
 }

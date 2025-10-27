@@ -7,7 +7,11 @@ public class Prontuario {
     public Prontuario() {}
 
     public void adicionarConsulta(Consulta consulta) {
-        consultas.add(consulta);
+        if (consulta != null) {
+            consultas.add(consulta);
+        } else {
+            System.out.println("Consulta inválida, não adicionada ao prontuário.");
+        }
     }
 
     public void listarConsultas() {
@@ -17,8 +21,9 @@ public class Prontuario {
         }
 
         for (int i = 0; i < consultas.size(); i++) {
-            System.out.println("===== CONSULTA Nº " + (i + 1) + " =====");
+            System.out.println("\n===== CONSULTA Nº " + (i + 1) + " =====");
             System.out.println(consultas.get(i).gerarRelatorio());
+            System.out.println("------------------------------");
         }
     }
 
@@ -27,12 +32,15 @@ public class Prontuario {
     }
 
     public void setConsultas(List<Consulta> consultas) {
-        this.consultas = consultas;
+        if (consultas != null) {
+            this.consultas = consultas;
+        }
     }
 
     public int getTotalConsultas() {
         return consultas.size();
     }
+
 
     @Override
     public String toString() {

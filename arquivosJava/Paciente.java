@@ -1,26 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paciente extends Pessoa{
+public class Paciente extends Pessoa {
 
     private String tipoSangue;
-    private String Alergias;
-    private String prioridade;
-    protected List<Prontuario> prontuario = new ArrayList<>();
+    private String alergias;
+    private String prioridade; // definido apenas pela enfermeira
+    private List<Prontuario> prontuario = new ArrayList<>();
 
-    public Paciente(String nome, String cpf, String tipoSangue, String Alergias) {
-        setNome(nome);
-        setCpf(cpf);
-        setTipoSangue(tipoSangue);
-        setAlergias(Alergias);
-    }
+    public Paciente() {}
 
-    public List<Prontuario> getProntuario() {
-        return prontuario;
-    }
-
-    public void setProntuario(List<Prontuario> prontuario) {
-        this.prontuario = prontuario;
+    public Paciente(String nome, String cpf, String tipoSangue, String alergias) {
+        super(nome, cpf);
+        this.tipoSangue = tipoSangue;
+        this.alergias = alergias;
     }
 
     public String getTipoSangue() {
@@ -28,18 +21,22 @@ public class Paciente extends Pessoa{
     }
 
     public void setTipoSangue(String tipoSangue) {
-        if (tipoSangue != null) {
+        if (tipoSangue != null && !tipoSangue.isBlank()) {
             this.tipoSangue = tipoSangue;
+        } else {
+            System.out.println("Tipo sanguíneo inválido!");
         }
     }
 
     public String getAlergias() {
-        return Alergias;
+        return alergias;
     }
 
     public void setAlergias(String alergias) {
         if (alergias != null) {
-            Alergias = alergias;
+            this.alergias = alergias;
+        } else {
+            this.alergias = "Nenhuma registrada";
         }
     }
 
@@ -47,18 +44,39 @@ public class Paciente extends Pessoa{
         return prioridade;
     }
 
-    public void setPrioridade(String prioridade) {
-        this.prioridade = prioridade;
+    public void definirPrioridade(String prioridade) {
+        if (prioridade != null && !prioridade.isBlank()) {
+            this.prioridade = prioridade.toLowerCase();
+        } else {
+            System.out.println("Prioridade inválida!");
+        }
+    }
+
+    public List<Prontuario> getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(List<Prontuario> prontuario) {
+        if (prontuario != null) {
+            this.prontuario = prontuario;
+        }
+    }
+
+    public void adicionarProntuario(Prontuario novoProntuario) {
+        if (novoProntuario != null) {
+            prontuario.add(novoProntuario);
+        }
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Paciente{");
-        sb.append(Paciente.super.toString());
         sb.append("tipoSangue='").append(getTipoSangue()).append('\'');
-        sb.append(", Alergias='").append(getAlergias()).append('\'');
-        sb.append(", Prontuario='").append(getProntuario()).append('\'');
-        sb.append(", Prioridade='").append(prioridade).append('\'');
+        sb.append(", alergias='").append(getAlergias()).append('\'');
+        sb.append(", prioridade='").append(getPrioridade()).append('\'');
+        sb.append(", prontuario=").append(getProntuario());
+        sb.append(", nome='").append(getNome()).append('\'');
+        sb.append(", cpf='").append(getCpf()).append('\'');
         sb.append('}');
         return sb.toString();
     }
