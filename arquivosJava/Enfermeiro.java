@@ -29,7 +29,7 @@ public class Enfermeiro extends Pessoa{
     public String triagem(double valor) {
         double total = valor;
 
-        System.out.print("Qual a temperatura?: ");
+        System.out.print("Qual a temperatura do paciente?: ");
         double temperatura = input.nextDouble();
 
         System.out.print("Qual quantida de BPM do paciente?: ");

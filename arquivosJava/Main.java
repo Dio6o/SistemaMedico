@@ -13,8 +13,12 @@ class Main {
         Paciente paciente5 = new Paciente("Alemao", "777", "A+", "Ateu");
 
         Fila fila  = new Fila();
+        Enfermeiro enfermeiro = new Enfermeiro();
+        Atendimento atendimento = new Atendimento();
+        Consulta consulta = new Consulta();
 
-        //paciente1.setPrioridade(enfermeiro.triagem(atendente.triagem()));
+
+        //paciente1.setPrioridade(enfermeiro.triagem(atendimento.triagem()));
         //paciente2.setPrioridade(enfermeiro.triagem(atendente.triagem()));
 
         paciente1.setPrioridade("vermelho");
@@ -28,6 +32,10 @@ class Main {
         fila.addToLine(paciente4);
         fila.addToLine(paciente1);
         fila.addToLine(paciente5);
+
+        System.out.println(fila);
+
+        consulta.consultar(fila);
 
         System.out.println(fila);
 

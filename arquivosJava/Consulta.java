@@ -5,15 +5,7 @@ public class Consulta {
     private String diagnostico;
     private String triagem;
 
-    public Consulta() {}
-
-    public Consulta(Paciente paciente, String temperatura, String bpm, String diagnostico, String triagem) {
-        this.paciente = paciente;
-        this.temperatura = temperatura;
-        this.bpm = bpm;
-        this.diagnostico = diagnostico;
-        this.triagem = triagem;
-    }
+    Consulta(){}
 
     public Paciente getPaciente() {
         return paciente;
@@ -54,6 +46,15 @@ public class Consulta {
     public void setTriagem(String triagem) {
         this.triagem = triagem;
     }
+
+    public void consultar(Fila fila){
+        Paciente paciente = fila.getFila().getFirst();
+        System.out.printf("Consultando paciente %s \n",  paciente.getNome());
+        //Adicionar dados ao protuario do paciente
+        fila.getFila().remove(paciente);
+
+    }
+
 
     public String gerarRelatorio() {
         return "----------------------------\n" +

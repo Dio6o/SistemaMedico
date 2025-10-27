@@ -26,24 +26,6 @@ public class Atendente extends Pessoa {
         }
     }
 
-    public double triagem() {
-        double total = 0;
-
-        System.out.print("Você se enjoado?: Sim ou Não? " );
-        String opcao = input.nextLine();
-        if (opcao.equalsIgnoreCase("sim")) {
-            total += 5;
-        }
-
-        System.out.print("Qual o nível da dor? 0 a 10. ");
-        int opcao2 = input.nextInt();
-        total += opcao2;
-
-        input.nextLine();
-
-        return total;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Atendente{");
