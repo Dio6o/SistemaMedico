@@ -14,8 +14,8 @@ public class Pessoa {
     }
 
     public void setNome(String nome) {
-        if (nome != null && !nome.isBlank()) {
-            setNome(nome);
+        if (nome != null) {
+            this.nome = nome;
         } else {
             System.out.println("Nome inválido!");
         }
@@ -26,8 +26,8 @@ public class Pessoa {
     }
 
     public void setCpf(String cpf) {
-        if (cpf != null && !cpf.isBlank()) {
-            setCpf(cpf);
+        if (cpf != null) {
+            this.cpf = cpf;
         } else {
             System.out.println("CPF inválido!");
         }

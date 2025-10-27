@@ -3,28 +3,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GerenciadorHospital {
-    private Scanner input;
+    private Scanner input =  new Scanner(System.in);
     private Atendente atendente;
     private Enfermeiro enfermeiro;
     private Medico medico;
     private FilaAtendimento fila;
     private List<Paciente> todosPacientes;
 
-    public GerenciadorHospital(Scanner input, Atendente atendente, Enfermeiro enfermeiro, Medico medico) {
-        setInput(input);
+    public GerenciadorHospital(Atendente atendente, Enfermeiro enfermeiro, Medico medico) {
         setAtendente(atendente);
         setEnfermeiro(enfermeiro);
         setMedico(medico);
         setFila(new FilaAtendimento());
         setTodosPacientes(new ArrayList<>());
-    }
-
-    public Scanner getInput() {
-        return input;
-    }
-
-    public void setInput(Scanner input) {
-        this.input = input;
     }
 
     public Atendente getAtendente() {
@@ -79,18 +70,79 @@ public class GerenciadorHospital {
         p4.definirPrioridade("azul");
         Paciente p5 = new Paciente("Rafael Sardinha", "555.555.555-55", "A-", "Nenhuma");
         p5.definirPrioridade("amarelo");
+        Paciente p6 = new Paciente("Luan Braun", "999.555.555-55", "O-", "Dipirona");
+        p6.definirPrioridade("vermelho");
+        Paciente p7 = new Paciente("Luan Jairo", "000.155.999-21", "AB-", "Ovos");
+        p7.definirPrioridade("verde");
+        Paciente p8 = new Paciente("Luan Da Silva", "123.101.499-21", "AB-", "Ovos");
+        p8.definirPrioridade("verde");
+        Paciente p9 = new Paciente("Andry Da Rosa", "147.258.369-60", "A+", "Amendoim");
+        p9.definirPrioridade("vermelho");
+        Paciente p10 = new Paciente("Igor Conaco", "258.369.147-70", "O-", "Nenhuma");
+        p10.definirPrioridade("azul");
+        Paciente p11 = new Paciente("Eric Drabizinsk", "369.147.258-80", "B+", "Soja");
+        p11.definirPrioridade("vermelho");
+        Paciente p12 = new Paciente("Kauan Pereira", "111.222.333-44", "A-", "Lactose");
+        p12.definirPrioridade("verde");
+        Paciente p13 = new Paciente("Larissa Maia", "222.333.444-55", "O+", "Nenhuma");
+        p13.definirPrioridade("vermelho");
+        Paciente p14 = new Paciente("Bernardo de Andrade", "333.444.555-66", "AB+", "Poeira");
+        p14.definirPrioridade("verde");
+        Paciente p15 = new Paciente("Nicole Soraia", "444.555.666-77", "A+", "Amendoim");
+        p15.definirPrioridade("amarelo");
+        Paciente p16 = new Paciente("Guga Capistrano", "555.666.777-88", "O-", "Nenhuma");
+        p16.definirPrioridade("verde");
+        Paciente p17 = new Paciente("Gabriel Alves", "666.777.888-99", "B-", "Frutos do mar");
+        p17.definirPrioridade("amarelo");
+        Paciente p18 = new Paciente("Lucas de Souza", "777.888.999-00", "A-", "Nenhuma");
+        p18.definirPrioridade("azul");
+        Paciente p19 = new Paciente("João Francisco", "888.999.000-11", "O+", "Ovos");
+        p19.definirPrioridade("verde");
+        Paciente p20 = new Paciente("Max Alves", "999.000.111-22", "AB-", "Nenhuma");
+        p20.definirPrioridade("vermelho");
 
         todosPacientes.add(p1);
         todosPacientes.add(p2);
         todosPacientes.add(p3);
         todosPacientes.add(p4);
         todosPacientes.add(p5);
+        todosPacientes.add(p6);
+        todosPacientes.add(p7);
+        todosPacientes.add(p8);
+        todosPacientes.add(p9);
+        todosPacientes.add(p10);
+        todosPacientes.add(p11);
+        todosPacientes.add(p12);
+        todosPacientes.add(p13);
+        todosPacientes.add(p14);
+        todosPacientes.add(p15);
+        todosPacientes.add(p16);
+        todosPacientes.add(p17);
+        todosPacientes.add(p18);
+        todosPacientes.add(p19);
+        todosPacientes.add(p20);
 
         fila.adicionarPaciente(p1);
         fila.adicionarPaciente(p2);
         fila.adicionarPaciente(p3);
         fila.adicionarPaciente(p4);
         fila.adicionarPaciente(p5);
+        fila.adicionarPaciente(p6);
+        fila.adicionarPaciente(p7);
+        fila.adicionarPaciente(p8);
+        fila.adicionarPaciente(p9);
+        fila.adicionarPaciente(p10);
+        fila.adicionarPaciente(p11);
+        fila.adicionarPaciente(p12);
+        fila.adicionarPaciente(p13);
+        fila.adicionarPaciente(p14);
+        fila.adicionarPaciente(p15);
+        fila.adicionarPaciente(p16);
+        fila.adicionarPaciente(p17);
+        fila.adicionarPaciente(p18);
+        fila.adicionarPaciente(p19);
+        fila.adicionarPaciente(p20);
+
     }
 
 
@@ -122,6 +174,44 @@ public class GerenciadorHospital {
             String prio = p.getPrioridade() != null ? p.getPrioridade().toUpperCase() : "AGUARDANDO TRIAGEM";
             System.out.printf("- %s (CPF: %s) | Status: %s\n", p.getNome(), p.getCpf(), prio);
         }
+    }
+
+    public void menu() {
+
+        carregarPacientesPadrao();
+        int opcao;
+
+        do {
+
+            System.out.println("\n=== SISTEMA DE ATENDIMENTO ===");
+            System.out.println("1 - Cadastrar paciente");
+            System.out.println("2 - Realizar triagem (pacientes pendentes)");
+            System.out.println("3 - Realizar consulta (próximo da fila)");
+            System.out.println("4 - Visualizar prontuário");
+            System.out.println("5 - Listar fila");
+            System.out.println("6 - Listar todos os pacientes");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha: ");
+
+            try {
+                opcao = Integer.parseInt(input.nextLine());
+            } catch (NumberFormatException e) {
+                opcao = -1;
+            }
+
+            switch (opcao) {
+                case 1 -> cadastrarPaciente();
+                case 2 -> realizarTriagem();
+                case 3 -> realizarConsulta();
+                case 4 -> visualizarProntuario();
+                case 5 -> listarFila();
+                case 6 -> listarTodosPacientes();
+                case 0 -> System.out.println("Encerrando...");
+                default -> System.out.println("Opção inválida.");
+            }
+        } while (opcao != 0);
+
+        input.close();
     }
 
     @Override
