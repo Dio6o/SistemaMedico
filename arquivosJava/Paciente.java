@@ -58,6 +58,7 @@ public class Paciente extends Pessoa{
         sb.append("tipoSangue='").append(getTipoSangue()).append('\'');
         sb.append(", Alergias='").append(getAlergias()).append('\'');
         sb.append(", Prontuario='").append(getProntuario()).append('\'');
+        sb.append(", Prioridade='").append(prioridade).append('\'');
         sb.append('}');
         return sb.toString();
     }
