@@ -80,7 +80,6 @@ public class Atendente extends Pessoa {
             return;
         }
 
-        input.close();
         paciente.getProntuario().get(0).listarConsultas();
     }
 

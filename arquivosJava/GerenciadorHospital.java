@@ -227,7 +227,6 @@ public class GerenciadorHospital {
             }
         } while (opcao != 0);
 
-        input.close();
     }
 
     @Override
