@@ -30,7 +30,7 @@ public class Atendente extends Pessoa {
     }
 
     public Paciente cadastrarPaciente(Scanner input) {
-        System.out.println("\n=== CADASTRO DE PACIENTE ===");
+        System.out.println("\nCadastro de Paciente:");
         System.out.print("Nome: ");
         String nome = input.nextLine();
         System.out.print("CPF: ");
@@ -51,7 +51,7 @@ public class Atendente extends Pessoa {
             return;
         }
 
-        System.out.println("\n=== Visualizar Prontuário ===");
+        System.out.println("\nVisualizar Prontuário:");
         System.out.println("Qual paciente você deseja consultar?");
         for (int i = 0; i < todosPacientes.size(); i++) {
             Paciente p = todosPacientes.get(i);
@@ -73,7 +73,7 @@ public class Atendente extends Pessoa {
         }
 
         Paciente paciente = todosPacientes.get(escolha);
-        System.out.println("\n--- Prontuário de " + paciente.getNome() + " ---");
+        System.out.println("\nProntuário de " + paciente.getNome());
 
         if (paciente.getProntuario().isEmpty()) {
             System.out.println("Nenhum registro encontrado para este paciente.");

@@ -69,7 +69,7 @@ public class Enfermeiro extends Pessoa {
     }
 
     private void fazerPerguntasTriagem(Scanner input, Paciente paciente) {
-        System.out.println("\n--- Iniciando Triagem de " + paciente.getNome() + " ---");
+        System.out.println("\nIniciando Triagem d@ " + paciente.getNome());
         double total = 0;
 
         System.out.print("O paciente está sentindo enjoo? (Sim/Não): ");
@@ -81,20 +81,46 @@ public class Enfermeiro extends Pessoa {
         System.out.print("Temperatura corporal (°C): ");
         try {
             double temp = Double.parseDouble(input.nextLine());
-            if (temp > 39) total += 5; else if (temp >= 38) total += 3; else if (temp >= 37.5) total += 1; else if (temp < 35) total += 4;
+            if (temp > 39) {
+                total += 5;
+            } else if (temp >= 38) {
+                total += 3;
+            } else if (temp >= 37.5) {
+                total += 1;
+            } else if (temp < 35) {
+                total += 4;
+            }
         } catch (Exception e) {}
 
         System.out.print("Batimentos por minuto (BPM): ");
         try {
             int bpm = Integer.parseInt(input.nextLine());
-            if (bpm > 120) total += 5; else if (bpm > 100) total += 3; else if (bpm < 50) total += 3; else if (bpm < 30) total += 5;
-        } catch (Exception e) {}
+            if (bpm > 120) {
+                total += 5;
+            } else if (bpm > 100){
+                total += 3;
+            } else if (bpm < 50) {
+                total += 3;
+            } else if (bpm < 30) {
+                total += 5;
+            }
+
+        } catch (Exception e){}
 
         String prioridade;
-        if (total >= 20) prioridade = "vermelho";
-        else if (total >= 15) prioridade = "amarelo";
-        else if (total >= 10) prioridade = "verde";
-        else prioridade = "azul";
+        if (total >= 20){
+            prioridade = "vermelho";
+
+        } else if (total >= 15) {
+            prioridade = "amarelo";
+
+        } else if (total >= 10) {
+            prioridade = "verde";
+
+        } else {
+            prioridade = "azul";
+
+        }
 
         paciente.definirPrioridade(prioridade);
         System.out.printf("Prioridade definida para %s: %s\n", paciente.getNome(), prioridade.toUpperCase());

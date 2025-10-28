@@ -169,7 +169,7 @@ public class GerenciadorHospital {
     }
 
     public void listarTodosPacientes() {
-        System.out.println("\n=== Todos os Pacientes do Sistema ===");
+        System.out.println("\nPacientes no sistema:");
         for (Paciente p : todosPacientes) {
             String prio = p.getPrioridade() != null ? p.getPrioridade().toUpperCase() : "AGUARDANDO TRIAGEM";
             System.out.printf("- %s (CPF: %s) | Status: %s\n", p.getNome(), p.getCpf(), prio);
