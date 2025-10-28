@@ -44,7 +44,7 @@ public class Enfermeiro extends Pessoa {
             return;
         }
 
-        System.out.println("\n=== Pacientes Aguardando Triagem ===");
+        System.out.println("\n Pacientes Aguardando Triagem: ");
         for (int i = 0; i < semPrioridade.size(); i++) {
             System.out.printf("%d. %s (CPF: %s)\n", i + 1, semPrioridade.get(i).getNome(), semPrioridade.get(i).getCpf());
         }
