@@ -183,13 +183,13 @@ public class GerenciadorHospital {
 
         do {
 
-            System.out.println("\n=== SISTEMA DE ATENDIMENTO ===");
+            System.out.println("\nAtendimento: ");
             System.out.println("1 - Cadastrar paciente");
             System.out.println("2 - Realizar triagem (pacientes pendentes)");
-            System.out.println("3 - Realizar consulta (próximo da fila)");
+            System.out.println("3 - Realizar consulta (por ordem de prioridade)");
             System.out.println("4 - Visualizar prontuário");
-            System.out.println("5 - Listar fila");
-            System.out.println("6 - Listar todos os pacientes");
+            System.out.println("6 - Lista de todos os Pacientes");
+            System.out.println("5 - Ver fila");
             System.out.println("0 - Sair");
             System.out.print("Escolha: ");
 
@@ -200,14 +200,30 @@ public class GerenciadorHospital {
             }
 
             switch (opcao) {
-                case 1 -> cadastrarPaciente();
-                case 2 -> realizarTriagem();
-                case 3 -> realizarConsulta();
-                case 4 -> visualizarProntuario();
-                case 5 -> listarFila();
-                case 6 -> listarTodosPacientes();
-                case 0 -> System.out.println("Encerrando...");
-                default -> System.out.println("Opção inválida.");
+                case 0:
+                    System.out.println("Programa finalizado!");
+                    break;
+                case 1:
+                    cadastrarPaciente();
+                    break;
+                case 2:
+                    realizarTriagem();
+                    break;
+                case 3:
+                    realizarConsulta();
+                    break;
+                case 4:
+                    visualizarProntuario();
+                    break;
+                case 5:
+                    listarFila();
+                    break;
+                case 6:
+                    listarTodosPacientes();
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
             }
         } while (opcao != 0);
 

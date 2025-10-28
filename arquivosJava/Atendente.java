@@ -42,7 +42,6 @@ public class Atendente extends Pessoa {
 
         Paciente paciente = new Paciente(nome, cpf, tipoSangue, alergias);
         System.out.println("Paciente cadastrado: " + paciente.getNome());
-        input.close();
         return paciente;
     }
 
